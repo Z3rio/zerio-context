@@ -4,16 +4,24 @@ let Button = [];
 
 const OpenMenu = (data) => {
     DrawButtons(data)
+    $("#container").animate({
+        "right": "2vh"
+    }, 250)
 }
 
 const CloseMenu = () => {
-    for (let i = 0; i < ButtonsData.length; i++) {
-        let id = ButtonsData[i].id
-        $(".button").remove();
-    }
     ButtonsData = [];
     Buttons = [];
     Button = [];
+    $("#container").animate({
+        "right": "-50%"
+    }, 400)
+    setTimeout(function() {
+        for (let i = 0; i < ButtonsData.length; i++) {
+            // let id = ButtonsData[i].id
+            $(".button").remove();
+        }
+    }, 400)
 };
 
 const DrawButtons = (data) => {
@@ -21,19 +29,19 @@ const DrawButtons = (data) => {
     for (let i = 0; i < ButtonsData.length; i++) {
         let header = ButtonsData[i].header
         let message = ButtonsData[i].txt
-        let id = ButtonsData[i].id
+        // let id = ButtonsData[i].id
         let element
 
         element = $(`
-            <div class="button" id=`+id+`>
-              <div class="header" id=`+id+`>`+header+`</div>
-              <div class="txt" id=`+id+`>`+message+`</div>
+            <div class="button" id=`+i+`>
+              <div class="header" id=`+i+`>`+header+`</div>
+              <div class="txt" id=`+i+`>`+message !== undefined ? message : ""+`</div>
             </div>`
         );
         $('#buttons').append(element);
-        Buttons[id] = element
+        Buttons[i] = element
         if (ButtonsData[i].params) {
-            Button[id] = ButtonsData[i].params
+            Button[i] = ButtonsData[i].params
         }
     }
 };
@@ -48,12 +56,12 @@ $(document).click(function(event){
 })
 
 const PostData = (id) => {
-    $.post(`https://nh-context/dataPost`, JSON.stringify(Button[id]))
+    $.post(`https://zerio-context/dataPost`, JSON.stringify(Button[id]))
     return CloseMenu();
 }
 
 const CancelMenu = () => {
-    $.post(`https://nh-context/cancel`)
+    $.post(`https://zerio-context/cancel`)
     return CloseMenu();
 }
 
@@ -71,11 +79,13 @@ window.addEventListener("message", (evt) => {
     }
 })
 
-
-// document.onkeyup = function (event) {
-//     event = event || window.event;
-//     var charCode = event.keyCode || event.which;
-//     if (charCode == 27) {
-//         CancelMenu();
-//     }
-// };
+$(document).on('keydown', function() {
+    switch(event.keyCode) {
+        case 27: // ESCAPE
+            CancelMenu()
+            break
+        case 8: // BACKSPACE
+            CancelMenu()
+            break
+    }
+})
