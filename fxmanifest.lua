@@ -9,6 +9,7 @@ ui_page "./ui/index.html"
 
 files{
     "./ui/index.html",
+    "./ui/theme.css",
     "./ui/main.css",
     "./ui/main.js",
 }
