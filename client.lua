@@ -3,18 +3,21 @@ local cacheData = {}
 RegisterNUICallback("dataPost", function(id, cb)
     PlaySoundFrontend(-1, 'Highlight_Cancel','DLC_HEIST_PLANNING_BOARD_SOUNDS', 1)
     SetNuiFocus(false, false)
-    if cacheData[id + 1].params.event then
-        if cacheData[id + 1].params.isServer then
-            TriggerServerEvent(cacheData[id + 1].params.event, cacheData[id + 1].params.args)
-        else
-            TriggerEvent(cacheData[id + 1].params.event, cacheData[id + 1].params.args)
+    local data = cacheData[id + 1]
+    if data then
+        if data.params.event then
+            if data.params.isServer then
+                TriggerServerEvent(data.params.event, data.params.args)
+            else
+                TriggerEvent(data.params.event, data.params.args)
+            end
         end
-    end
-    if cacheData[id + 1].params.callback then
-        if cacheData[id + 1].params.args then
-            pcall(cacheData[id + 1].params.callback, cacheData[id + 1].params.args)
-        else
-            pcall(cacheData[id + 1].params.callback)
+        if data.params.callback then
+            if data.params.args then
+                pcall(data.params.callback, data.params.args)
+            else
+                pcall(data.params.callback)
+            end
         end
     end
 end)
@@ -32,4 +35,23 @@ RegisterNetEvent('zerio-context:sendMenu', function(data)
         data = data
     })
     cacheData = data
+end)
+
+Citizen.CreateThread(function()
+    Citizen.Wait(500)
+    TriggerEvent("zerio-context:sendMenu", {
+        {
+            header = "Test"
+        },
+        {
+            header ="Test",
+            txt = "Test",
+            params = {
+                callback = function(args)
+                    print(args)
+                end,
+                args = "give_card"
+            }
+        }
+    })
 end)
