@@ -11,5 +11,5 @@ Current Changes:
 * Easy Documentation
 * Easier Usage
 
-[Image / Preview](https://imgur.com/a/GQ6nBk7)
-[Documentation|(https://github.com/Attrixx/zerio-context/wiki)
+[Image / Preview](https://imgur.com/a/GQ6nBk7).
+[Documentation](https://github.com/Attrixx/zerio-context/wiki)
