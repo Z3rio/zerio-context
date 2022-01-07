@@ -1,18 +1,20 @@
-RegisterNUICallback("dataPost", function(data, cb)
+local cacheData = {}
+
+RegisterNUICallback("dataPost", function(id, cb)
     PlaySoundFrontend(-1, 'Highlight_Cancel','DLC_HEIST_PLANNING_BOARD_SOUNDS', 1)
     SetNuiFocus(false, false)
-    if data.event then
-        if data.isServer then
-            TriggerServerEvent(data.event, data.args)
+    if cacheData[id + 1].params.event then
+        if cacheData[id + 1].params.isServer then
+            TriggerServerEvent(cacheData[id + 1].params.event, cacheData[id + 1].params.args)
         else
-            TriggerEvent(data.event, data.args)
+            TriggerEvent(cacheData[id + 1].params.event, cacheData[id + 1].params.args)
         end
     end
-    if data.callback then
-        if data.args then
-            pcall(data.callback, data.args)
+    if cacheData[id + 1].params.callback then
+        if cacheData[id + 1].params.args then
+            pcall(cacheData[id + 1].params.callback, cacheData[id + 1].params.args)
         else
-            pcall(data.callback)
+            pcall(cacheData[id + 1].params.callback)
         end
     end
 end)
@@ -29,4 +31,5 @@ RegisterNetEvent('zerio-context:sendMenu', function(data)
         action = "OPEN_MENU",
         data = data
     })
+    cacheData = data
 end)
