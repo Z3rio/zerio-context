@@ -7,5 +7,7 @@ Current Changes:
 * Animations
 * Callbacks
 * Misc Stuff!
+* Easy "Themes"
+* Easy Documentation
 
 [Image / Preview](https://imgur.com/a/GQ6nBk7)
