@@ -10,15 +10,16 @@
 #container { /* Container for buttons */
     position: absolute;
     height: auto;
-    top: 20%;
-    right: 20%;
+    top: 50%;
+    right: -50%;
     border-radius: 5px;
     background: transparent !important;
+    transform: translateY(-50%);
 }
 
 #buttons { /* Group for buttons */
     max-height: 75vh;
-    width: 31vw;
+    width: 16.5vw;
     overflow-x: none;
     overflow-y: auto;
     padding: 10px;
@@ -38,24 +39,29 @@ body::-webkit-scrollbar { /* Make the scrollbar invisible */
 
 .button { /* Design for button */
     width: auto;
-    max-width: 45%;
+    max-width: 100%;
     height: 10%;
-    background: #111518;
+    background: #202243;
     color: white;
     margin: auto;
     position: relative;
     top: 10%;
-    margin-top: 0.5rem;
     overflow: hidden;
     padding: 0.45rem;
-    border-radius: 0.15rem;
     display: flex;
     flex-direction: column;
-    box-shadow: 0.0rem 0.0rem 0.1rem 0.05rem #000000;
+    box-shadow: 0.0rem 0.0rem 0.1rem 0.05rem #3E4484;
+    transition: 0.2s;
+}
+
+.button#\30 {
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
 }
 
 .button:hover { /* When player hover a button */
-    background-color: #191F24;
+    background-color: #2A2E59;
+    transition: 0.2s;
 }
 
 .button > .text { /* Text on buttons */
@@ -73,6 +79,7 @@ body::-webkit-scrollbar { /* Make the scrollbar invisible */
     justify-content: left;
     overflow: wrap;
     color: white;
-    font-size: 0.875rem;
+    font-size: 1.0rem;
     overflow: hidden;
     font-weight: 500;
+}
