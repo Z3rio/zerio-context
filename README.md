@@ -9,5 +9,6 @@ Current Changes:
 * Misc Stuff!
 * Easy "Themes"
 * Easy Documentation
+* Easier Usage
 
 [Image / Preview](https://imgur.com/a/GQ6nBk7)
