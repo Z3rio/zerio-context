@@ -18,7 +18,7 @@ const CloseMenu = () => {
     }, 400)
     setTimeout(function() {
         for (let i = 0; i < ButtonsData.length; i++) {
-            // let id = ButtonsData[i].id
+            let id = ButtonsData[i].id
             $(".button").remove();
         }
     }, 400)
@@ -29,19 +29,20 @@ const DrawButtons = (data) => {
     for (let i = 0; i < ButtonsData.length; i++) {
         let header = ButtonsData[i].header
         let message = ButtonsData[i].txt
-        // let id = ButtonsData[i].id
+        let id = ButtonsData[i].id
         let element
 
         element = $(`
             <div class="button" id=`+i+`>
               <div class="header" id=`+i+`>`+header+`</div>
-              <div class="txt" id=`+i+`>`+message !== undefined ? message : ""+`</div>
+              <div class="txt" id=`+i+`>`+(message ? message : "")+`</div>
             </div>`
         );
         $('#buttons').append(element);
         Buttons[i] = element
         if (ButtonsData[i].params) {
-            Button[i] = ButtonsData[i].params
+            Button[i] = i
+            // Button[i] = ButtonsData[i].params
         }
     }
 };
