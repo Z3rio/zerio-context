@@ -20,10 +20,12 @@ RegisterNUICallback("dataPost", function(id, cb)
             end
         end
     end
+    cb("ok")
 end)
 
-RegisterNUICallback("cancel", function()
+RegisterNUICallback("cancel", function(data,cb)
     SetNuiFocus(false, false)
+    cb("ok")
 end)
 
 
